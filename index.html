@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وزارة الداخلية - لوحة التحكم</title>
+    <!-- استيراد خطوط مميزة وايقونات -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #030712;
+            --card-bg: #0b1329;
+            --primary-blue: #00b4d8;
+            --accent-green: #00e676;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        /* حاوية الهاتف المحمول المتجاوبة */
+        .phone-container {
+            width: 100%;
+            max-width: 412px;
+            background-color: var(--bg-color);
+            min-height: 850px;
+            border: 1px solid #1e293b;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 1. شاشة التحميل الذكية */
+        .loading-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-logo {
+            width: 120px;
+            height: 120px;
+            border: 3px solid var(--accent-green);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px var(--accent-green);
+            margin-bottom: 24px;
+            animation: pulse 2s infinite;
+        }
+
+        .loading-logo i {
+            font-size: 3rem;
+            color: var(--accent-green);
+        }
+
+        .loading-text {
+            color: var(--primary-blue);
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* 2. المحتوى الرئيسي للموقع */
+        .main-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* الهيدر والشعار */
+        .header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo-wrapper {
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--accent-green);
+            border-radius: 50%;
+            margin: 0 auto 16px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
+        }
+
+        .logo-wrapper i {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+        }
+
+        /* العناوين الجانبية */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-bottom: 2px solid #1e293b;
+            padding-bottom: 8px;
+            margin-top: 10px;
+        }
+
+        /* القوائم المنسدلة (القطاعات الأمنية) */
+        .sector-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sector-item {
+            background-color: var(--card-bg);
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .sector-header {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .sector-title-text {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+        }
+
+        .sector-title-text i {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+
+        .sector-chevron {
+            transition: transform 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        /* محتوى القطاع المنسدل */
+        .sector-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background-color: rgba(3, 7, 18, 0.4);
+            padding: 0 16px;
+        }
+
+        .sector-item.active .sector-chevron {
+            transform: rotate(180deg);
+            color: var(--primary-blue);
+        }
+
+        .sector-item.active .sector-content {
+            max-height: 200px; /* يمكن زيادته حسب المحتوى */
+            padding: 16px;
+            border-top: 1px solid #1e293b;
+        }
+
+        /* تفاصيل المسؤولين داخل القطاعات */
+        .leader-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .leader-box h4 {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .leader-box p {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .discord-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--primary-blue) !important;
+            font-size: 0.85rem !important;
+            margin-top: 2px;
+        }
+
+        .sector-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* أنيميشن النبض */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 230, 118, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+        }
+
+        /* إخفاء الشاشة السلس */
+        .fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-container">
+        
+        <!-- 1. شاشة التحميل (تختفي بعد ثانيتين تلقائياً) -->
+        <div class="loading-screen" id="loadingScreen">
+            <div class="loading-logo">
+                <i class="fa-solid asleep fa-shield-halved"></i>
+            </div>
+            <div class="loading-text">INITIALIZING SECURE ACCESS...</div>
+        </div>
+
+        <!-- 2. محتوى الصفحة الرئيسي -->
+        <div class="main-content">
+            
+            <!-- الهيدر الرئيسي -->
+            <div class="header">
+                <div class="logo-wrapper">
+                    <i class="fa-solid fa-building-shield"></i>
+                </div>
+                <h1>وزارة الداخلية</h1>
+                <p>أمان الوطن.. مسؤوليتنا</p>
+            </div>
+
+            <!-- قسم القطاعات الأمنية -->
+            <div class="section-title">القطاعات الأمنية</div>
+
+            <div class="sector-list">
+                
+                <!-- قطاع 1: قوات الأمن الخاصة -->
+                <div class="sector-item">
+                    <div class="sector-header" onclick="toggleSector(this)">
+                        <div class="sector-title-text">
+                            <i class="fa-solid fa-user-shield"></i>
+                            <span>قوات الأمن الخاصة</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down sector-chevron"></i>
+                    </div>
+                    <div class="sector-content">
+                        <div class="leader-info">
+                            <div class="leader-box">
+                                <h4>القائد المسؤول</h4>
+                                <p>هيثم الأسمري</p>
+                                <span class="discord-tag"><i class="fa-brands fa-discord"></i> xu2662</span>
+                            </div>
+                            <div class="leader-box">
+                                <h4>النائب</h4>
+                                <p>عمار العنزي</p>
+                            </div>
+                        </div>
+                        <p class="sector-desc">تختص بمكافحة الإرهاب، حماية كبار الشخصيات، والتدخل السريع في العمليات النوعية الحساسة.</p>
+                    </div>
+                </div>
+
+                <!-- قطاع 2: المباحث العامة -->
+                <div class="sector-item">
+                    <div class="sector-header" onclick="toggleSector(this)">
+                        <div class="sector-title-text">
+                            <i class="fa-solid fa-eye"></i>
+                            <span>المباحث العامة</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down sector-chevron"></i>
+                    </div>
+                    <div class="sector-content">
+                        <div class="leader-info">
+                            <div class="leader-box">
+                                <h4>القائد المسؤول</h4>
+                                <p>عبدالله السلامة</p>
+                                <span class="discord-tag"><i class="fa-brands fa-discord"></i> eagle99_9</span>
+                            </div>
+                            <div class="leader-box">
+                                <h4>النائب</h4>
+                                <p>لا يوجد</p>
+                            </div>
+                        </div>
+                        <p class="sector-desc">جهاز أمني استخباراتي، يُعنى بحماية الأمن الداخلي ومواجهة التهديدات الموجهة للاستقرار الوطني.</p>
+                    </div>
+                </div>
+
+                <!-- قطاع 3: المرور -->
+                <div class="sector-item">
+                    <div class="sector-header" onclick="toggleSector(this)">
+                        <div class="sector-title-text">
+                            <i class="fa-solid fa-car-burst"></i>
+                            <span>الإدارة العامة للمرور</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down sector-chevron"></i>
+                    </div>
+                    <div class="sector-content">
+                        <div class="leader-info">
+                            <div class="leader-box">
+                                <h4>القائد المسؤول</h4>
+                                <p>مفرح عسيري</p>
+                                <span class="discord-tag"><i class="fa-brands fa-discord"></i> cx7m</span>
+                            </div>
+                            <div class="leader-box">
+                                <h4>النائب</h4>
+                                <p>مشعل الغنام</p>
+                            </div>
+                        </div>
+                        <p class="sector-desc">مسؤولة عن تنظيم حركة السير، السلامة المرورية، وإصدار التراخيص والمخالفات داخل المدينة.</p>
+                    </div>
+                </div>
+
+            </div> <!-- نهاية القائمة -->
+
+        </div> <!-- نهاية المحتوى الرئيسي -->
+    </div> <!-- نهاية حاوية الهاتف -->
+
+    <script>
+        // دالة إخفاء شاشة التحميل بعد ثانيتين تلقائياً كالمقطع
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loadingScreen');
+                loader.classList.add('fade-out');
+            }, 2000); // 2000 مللي ثانية تعني ثانيتين
+        });
+
+        // دالة فتح وإغلاق القوائم المنسدلة بسلاسة
+        function toggleSector(header) {
+            const currentItem = header.parentElement;
+            
+            // لإغلاق أي قائمة أخرى مفتوحة تلقائياً (إشارت كالمقطع)
+            document.querySelectorAll('.sector-item').forEach(item => {
+                if (item !== currentItem) {
+                    item.classList.remove('active');
+                }
+            });
+
+            // تبديل حالة القائمة الحالية
+            currentItem.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
