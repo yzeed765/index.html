@@ -144,7 +144,7 @@
             margin-top: 10px;
         }
 
-        /* القوائم المنسدلة (القطاعات الأمنية) */
+        /* القوائم المنسدلة (القطاعات والقيادات) */
         .sector-list {
             display: flex;
             flex-direction: column;
@@ -260,7 +260,7 @@
         <!-- 1. شاشة التحميل (تختفي بعد ثانيتين تلقائياً) -->
         <div class="loading-screen" id="loadingScreen">
             <div class="loading-logo">
-                <i class="fa-solid asleep fa-shield-halved"></i>
+                <i class="fa-solid fa-shield-halved"></i>
             </div>
             <div class="loading-text">INITIALIZING SECURE ACCESS...</div>
         </div>
@@ -277,83 +277,60 @@
                 <p>أمان الوطن.. مسؤوليتنا</p>
             </div>
 
-            <!-- قسم القطاعات الأمنية -->
-            <div class="section-title">القطاعات الأمنية</div>
+            <!-- قسم القيادة العليا والقطاعات -->
+            <div class="section-title">القيادة السيرية والقطاعات</div>
 
             <div class="sector-list">
                 
-                <!-- قطاع 1: قوات الأمن الخاصة -->
+                <!-- قطاع 1: قيادة وزارة الداخلية -->
                 <div class="sector-item">
                     <div class="sector-header" onclick="toggleSector(this)">
                         <div class="sector-title-text">
-                            <i class="fa-solid fa-user-shield"></i>
-                            <span>قوات الأمن الخاصة</span>
+                            <i class="fa-solid fa-crown"></i>
+                            <span>قيادة وزارة الداخلية</span>
                         </div>
                         <i class="fa-solid fa-chevron-down sector-chevron"></i>
                     </div>
                     <div class="sector-content">
                         <div class="leader-info">
                             <div class="leader-box">
-                                <h4>القائد المسؤول</h4>
-                                <p>هيثم الأسمري</p>
-                                <span class="discord-tag"><i class="fa-brands fa-discord"></i> xu2662</span>
+                                <h4>وزير الداخلية</h4>
+                                <p>نواف العتيبي</p>
+                                <span class="discord-tag"><i class="fa-brands fa-discord"></i> نـواف</span>
                             </div>
                             <div class="leader-box">
-                                <h4>النائب</h4>
-                                <p>عمار العنزي</p>
+                                <h4>نائب وزير الداخلية</h4>
+                                <p>يزيد عسيري</p>
+                                <span class="discord-tag"><i class="fa-brands fa-discord"></i> يـزيد</span>
                             </div>
                         </div>
-                        <p class="sector-desc">تختص بمكافحة الإرهاب، حماية كبار الشخصيات، والتدخل السريع في العمليات النوعية الحساسة.</p>
+                        <p class="sector-desc">القيادة العليا المسؤولة عن رسم السياسات الأمنية والإشراف الكامل على جميع القطاعات والمنظومات التابعة للوزارة.</p>
                     </div>
                 </div>
 
-                <!-- قطاع 2: المباحث العامة -->
+                <!-- قطاع 2: مديرية الأمن العام -->
                 <div class="sector-item">
                     <div class="sector-header" onclick="toggleSector(this)">
                         <div class="sector-title-text">
-                            <i class="fa-solid fa-eye"></i>
-                            <span>المباحث العامة</span>
+                            <i class="fa-solid fa-star-of-life"></i>
+                            <span>مديرية الأمن العام</span>
                         </div>
                         <i class="fa-solid fa-chevron-down sector-chevron"></i>
                     </div>
                     <div class="sector-content">
                         <div class="leader-info">
                             <div class="leader-box">
-                                <h4>القائد المسؤول</h4>
-                                <p>عبدالله السلامة</p>
-                                <span class="discord-tag"><i class="fa-brands fa-discord"></i> eagle99_9</span>
+                                <h4>مدير الأمن العام</h4>
+                                <p>إياد جبران</p>
+                                <span class="discord-tag"><i class="fa-brands fa-discord"></i> إيـاد</span>
                             </div>
                             <div class="leader-box">
-                                <h4>النائب</h4>
-                                <p>لا يوجد</p>
+                                <h4>نائب مدير الأمن العام</h4>
+                                <p>سلطان الشمري</p>
+                                <span class="discord-tag"><i class="fa-brands fa-discord"></i> سـلطان</span>
                             </div>
                         </div>
-                        <p class="sector-desc">جهاز أمني استخباراتي، يُعنى بحماية الأمن الداخلي ومواجهة التهديدات الموجهة للاستقرار الوطني.</p>
-                    </div>
-                </div>
-
-                <!-- قطاع 3: المرور -->
-                <div class="sector-item">
-                    <div class="sector-header" onclick="toggleSector(this)">
-                        <div class="sector-title-text">
-                            <i class="fa-solid fa-car-burst"></i>
-                            <span>الإدارة العامة للمرور</span>
-                        </div>
-                        <i class="fa-solid fa-chevron-down sector-chevron"></i>
-                    </div>
-                    <div class="sector-content">
-                        <div class="leader-info">
-                            <div class="leader-box">
-                                <h4>القائد المسؤول</h4>
-                                <p>مفرح عسيري</p>
-                                <span class="discord-tag"><i class="fa-brands fa-discord"></i> cx7m</span>
-                            </div>
-                            <div class="leader-box">
-                                <h4>النائب</h4>
-                                <p>مشعل الغنام</p>
-                            </div>
-                        </div>
-                        <p class="sector-desc">مسؤولة عن تنظيم حركة السير، السلامة المرورية، وإصدار التراخيص والمخالفات داخل المدينة.</p>
+                        <p class="sector-desc">الجهة التنفيذية المسؤولة عن قيادة الميدان، حفظ النظام، مكافحة الجريمة، وتنسيق جهود الدوريات والمرور والشرطة التابعة للأمن العام.</p>
                     </div>
                 </div>
 
@@ -375,7 +352,7 @@
         function toggleSector(header) {
             const currentItem = header.parentElement;
             
-            // لإغلاق أي قائمة أخرى مفتوحة تلقائياً (إشارت كالمقطع)
+            // لإغلاق أي قائمة أخرى مفتوحة تلقائياً
             document.querySelectorAll('.sector-item').forEach(item => {
                 if (item !== currentItem) {
                     item.classList.remove('active');
