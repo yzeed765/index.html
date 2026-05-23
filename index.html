@@ -3,21 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>وزارة الداخلية - لوحة التحكم</title>
-    <!-- استيراد خطوط مميزة وايقونات -->
+    <title>وزارة الداخلية - الهيكل القيادي</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg-color: #030712;
-            --card-bg: #0b1329;
-            --primary-blue: #00b4d8;
-            --accent-green: #00e676;
-            --text-main: #ffffff;
-            --text-muted: #94a3b8;
+            --bg-dark: #02040a;
+            --bg-card: #070d19;
+            --bg-card-hover: #0d172a;
+            --accent-green: #22c55e;
+            --accent-blue: #38bdf8;
+            --text-white: #ffffff;
+            --text-gray: #64748b;
+            --border-color: #1e293b;
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وزارة الداخلية - الهيكل القيادي</title>
+    <!-- استيراد الخطوط والأيقونات الاحترافية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #02040a;
+            --bg-card: #070d19;
+            --bg-card-hover: #0d172a;
+            --accent-green: #22c55e;
+            --accent-blue: #38bdf8;
+            --text-white: #ffffff;
+            --text-gray: #64748b;
+            --border-color: #1e293b;
         }
 
         * {
@@ -29,138 +53,204 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 20px;
+            padding: 10px;
         }
 
-        /* حاوية الهاتف المحمول المتجاوبة */
-        .phone-container {
+        /* حاوية الجوال المتجاوبة */
+        .phone-layout {
             width: 100%;
             max-width: 412px;
-            background-color: var(--bg-color);
-            min-height: 850px;
-            border: 1px solid #1e293b;
-            border-radius: 24px;
+            background-color: var(--bg-dark);
+            min-height: 880px;
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            padding-bottom: 40px;
         }
 
-        /* 1. شاشة التحميل الذكية */
-        .loading-screen {
+        /* شاشة التحميل المتطابقة مع الهوية */
+        .loader-backdrop {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--bg-color);
-            z-index: 100;
+            background-color: var(--bg-dark);
+            z-index: 1000;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
-        .loading-logo {
-            width: 120px;
-            height: 120px;
-            border: 3px solid var(--accent-green);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 20px var(--accent-green);
+        .loader-ring {
+            position: relative;
+            width: 140px;
+            height: 140px;
             margin-bottom: 24px;
-            animation: pulse 2s infinite;
         }
 
-        .loading-logo i {
-            font-size: 3rem;
-            color: var(--accent-green);
+        .loader-ring img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 12px rgba(34, 197, 94, 0.5));
         }
 
-        .loading-text {
-            color: var(--primary-blue);
+        .loader-line {
+            width: 160px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+
+        .loader-line::after {
+            content: '';
+            position: absolute;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-green);
+            animation: loading-bar 1.5s infinite linear;
+        }
+
+        .loader-text {
+            color: var(--accent-blue);
+            font-size: 0.8rem;
             font-weight: 700;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-top: 15px;
+        }
+
+        @keyframes loading-bar {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* الهيدر العلوي وشريط التنقل */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .nav-links a.active {
+            color: var(--text-white);
+        }
+
+        .mini-logo img {
+            width: 35px;
+            height: 35px;
+        }
+
+        /* واجهة الترحيب الرئيسية */
+        .hero-section {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+        }
+
+        .main-logo-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px auto;
+            position: relative;
+        }
+
+        .main-logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.3));
+        }
+
+        .hero-section h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 6px;
+        }
+
+        .hero-section p {
+            color: var(--accent-blue);
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .scroll-down-btn {
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+            margin-top: 25px;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        /* العناوين والأقسام الرئيسيّة */
+        .section-header {
+            padding: 0 20px;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .section-header .sub-label {
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        /* 2. المحتوى الرئيسي للموقع */
-        .main-content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        /* الهيدر والشعار */
-        .header {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .logo-wrapper {
-            width: 100px;
-            height: 100px;
-            border: 2px solid var(--accent-green);
-            border-radius: 50%;
-            margin: 0 auto 16px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
-        }
-
-        .logo-wrapper i {
-            font-size: 2.5rem;
-            color: var(--accent-green);
-        }
-
-        .header h1 {
+        .section-header h2 {
             font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 4px;
+            font-weight: 900;
+            letter-spacing: -1px;
         }
 
-        .header p {
-            color: var(--primary-blue);
-            font-size: 0.9rem;
-        }
-
-        /* العناوين الجانبية */
-        .section-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            border-bottom: 2px solid #1e293b;
-            padding-bottom: 8px;
-            margin-top: 10px;
-        }
-
-        /* القوائم المنسدلة (القطاعات والقيادات) */
-        .sector-list {
+        /* القائمة المنسدلة للقطاعات */
+        .accordion-wrapper {
+            padding: 0 20px;
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        .sector-item {
-            background-color: var(--card-bg);
-            border: 1px solid #1e293b;
-            border-radius: 12px;
+        .accordion-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .sector-header {
-            padding: 16px;
+        .accordion-trigger {
+            padding: 18px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -168,85 +258,158 @@
             user-select: none;
         }
 
-        .sector-title-text {
+        .trigger-title {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             font-weight: 700;
+            font-size: 1.05rem;
         }
 
-        .sector-title-text i {
-            color: var(--primary-blue);
+        .trigger-title i {
+            color: var(--accent-blue);
             font-size: 1.2rem;
         }
 
-        .sector-chevron {
+        .trigger-icon {
+            font-size: 0.9rem;
+            color: var(--text-gray);
             transition: transform 0.3s ease;
-            color: var(--text-muted);
         }
 
-        /* محتوى القطاع المنسدل */
-        .sector-content {
+        .accordion-panel {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out, padding 0.3s ease;
-            background-color: rgba(3, 7, 18, 0.4);
-            padding: 0 16px;
+            background-color: rgba(2, 4, 10, 0.5);
+            padding: 0 20px;
         }
 
-        .sector-item.active .sector-chevron {
+        /* تفعيل البطاقة المفتوحة */
+        .accordion-card.is-active {
+            border-color: rgba(56, 189, 248, 0.4);
+            background-color: var(--bg-card-hover);
+        }
+
+        .accordion-card.is-active .trigger-icon {
             transform: rotate(180deg);
-            color: var(--primary-blue);
+            color: var(--accent-blue);
         }
 
-        .sector-item.active .sector-content {
-            max-height: 200px; /* يمكن زيادته حسب المحتوى */
-            padding: 16px;
-            border-top: 1px solid #1e293b;
+        .accordion-card.is-active .accordion-panel {
+            max-height: 250px;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
         }
 
-        /* تفاصيل المسؤولين داخل القطاعات */
-        .leader-info {
+        /* تخطيط شبكة المدراء والمسؤولين */
+        .officer-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
             margin-bottom: 12px;
         }
 
-        .leader-box h4 {
-            font-size: 0.8rem;
-            color: var(--text-muted);
+        .officer-card {
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 8px;
         }
 
-        .leader-box p {
+        .officer-card h4 {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            margin-bottom: 2px;
+        }
+
+        .officer-card p {
             font-size: 0.95rem;
             font-weight: 700;
-            color: var(--text-main);
+            color: var(--text-white);
         }
 
-        .discord-tag {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--primary-blue) !important;
-            font-size: 0.85rem !important;
-            margin-top: 2px;
+        .officer-card .status-none {
+            color: #ef4444 !important;
+            font-weight: 400;
+            font-size: 0.85rem;
         }
 
-        .sector-desc {
+        .panel-description {
             font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.5;
+            color: var(--text-gray);
+            line-height: 1.6;
         }
 
-        /* أنيميشن النبض */
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(0, 230, 118, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+        /* الهيكل القيادي الإستراتيجي السفلي */
+        .hierarchy-stack {
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
-        /* إخفاء الشاشة السلس */
+        .block-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-gray);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 4px;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        .hierarchy-node {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(13, 23, 42, 0.8) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .hierarchy-node::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent-blue);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .hierarchy-node h3 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin-bottom: 2px;
+        }
+
+        .hierarchy-node p {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        /* فوتر الصفحة الهوية */
+        .app-footer {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--text-gray);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
         .fade-out {
             opacity: 0;
             visibility: hidden;
@@ -255,112 +418,261 @@
 </head>
 <body>
 
-    <div class="phone-container">
+    <div class="phone-layout">
         
-        <!-- 1. شاشة التحميل (تختفي بعد ثانيتين تلقائياً) -->
-        <div class="loading-screen" id="loadingScreen">
-            <div class="loading-logo">
-                <i class="fa-solid fa-shield-halved"></i>
+        <!-- شاشة التحميل الحركية الاحترافية -->
+        <div class="loader-backdrop" id="loaderScreen">
+            <div class="loader-ring">
+                <!-- استخدام الشعار الدائري السعودي المرفق بالطلب -->
+                <img src="https://i.ibb.co/3Yv4YfC/12896.png" alt="Logo">
             </div>
-            <div class="loading-text">INITIALIZING SECURE ACCESS...</div>
+            <div class="loader-line"></div>
+            <div class="loader-text">جاري الاتصال بالنظام...</div>
         </div>
 
-        <!-- 2. محتوى الصفحة الرئيسي -->
-        <div class="main-content">
+        <!-- شريط التنقل العلوي للموقع الأساسي -->
+        <div class="nav-bar">
+            <div class="nav-links">
+                <a href="#about" class="active">عن الوزارة</a>
+                <a href="#leadership">القيادة</a>
+            </div>
+            <div class="mini-logo">
+                <img src="https://i.ibb.co/3Yv4YfC/12896.png" alt="MOI">
+            </div>
+        </div>
+
+        <!-- الواجهة الرئيسية والترحيب -->
+        <div class="hero-section" id="about">
+            <div class="main-logo-container">
+                <img src="https://i.ibb.co/3Yv4YfC/12896.png" alt="وزارة الداخلية">
+            </div>
+            <h1>وزارة الداخلية</h1>
+            <p>أمان الوطن.. مسؤوليتنا</p>
+            <div class="scroll-down-btn" onclick="document.getElementById('sectors').scrollIntoView();">
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+
+        <!-- قسم القطاعات الأمنية الميدانية -->
+        <div class="section-header" id="sectors">
+            <div class="sub-label">MAIN SECTORS</div>
+            <h2>القطاعات الأمنية</h2>
+        </div>
+
+        <div class="accordion-wrapper">
             
-            <!-- الهيدر الرئيسي -->
-            <div class="header">
-                <div class="logo-wrapper">
-                    <i class="fa-solid fa-building-shield"></i>
+            <!-- 1. قوات الأمن الخاصة -->
+            <div class="accordion-card">
+                <div class="accordion-trigger" onclick="toggleAccordion(this)">
+                    <div class="trigger-title">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <span>قوات الأمن الخاصة</span>
+                    </div>
+                    <i class="fa-solid fa-plus trigger-icon"></i>
                 </div>
-                <h1>وزارة الداخلية</h1>
-                <p>أمان الوطن.. مسؤوليتنا</p>
+                <div class="accordion-panel">
+                    <div class="officer-grid">
+                        <div class="officer-card">
+                            <h4>القائد المسؤول</h4>
+                            <p class="status-none">لا يوجد</p>
+                        </div>
+                        <div class="officer-card">
+                            <h4>النائب</h4>
+                            <p class="status-none">لا يوجد</p>
+                        </div>
+                    </div>
+                    <p class="panel-description">تختص بمكافحة الإرهاب، حماية كبار الشخصيات، والتدخل السريع في العمليات النوعية الحساسة.</p>
+                </div>
             </div>
 
-            <!-- قسم القيادة العليا والقطاعات -->
-            <div class="section-title">القيادة السيرية والقطاعات</div>
-
-            <div class="sector-list">
-                
-                <!-- قطاع 1: قيادة وزارة الداخلية -->
-                <div class="sector-item">
-                    <div class="sector-header" onclick="toggleSector(this)">
-                        <div class="sector-title-text">
-                            <i class="fa-solid fa-crown"></i>
-                            <span>قيادة وزارة الداخلية</span>
-                        </div>
-                        <i class="fa-solid fa-chevron-down sector-chevron"></i>
+            <!-- 2. المباحث العامة -->
+            <div class="accordion-card">
+                <div class="accordion-trigger" onclick="toggleAccordion(this)">
+                    <div class="trigger-title">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>المباحث العامة</span>
                     </div>
-                    <div class="sector-content">
-                        <div class="leader-info">
-                            <div class="leader-box">
-                                <h4>وزير الداخلية</h4>
-                                <p>نواف العتيبي</p>
-                                <span class="discord-tag"><i class="fa-brands fa-discord"></i> نـواف</span>
-                            </div>
-                            <div class="leader-box">
-                                <h4>نائب وزير الداخلية</h4>
-                                <p>يزيد عسيري</p>
-                                <span class="discord-tag"><i class="fa-brands fa-discord"></i> يـزيد</span>
-                            </div>
-                        </div>
-                        <p class="sector-desc">القيادة العليا المسؤولة عن رسم السياسات الأمنية والإشراف الكامل على جميع القطاعات والمنظومات التابعة للوزارة.</p>
-                    </div>
+                    <i class="fa-solid fa-plus trigger-icon"></i>
                 </div>
-
-                <!-- قطاع 2: مديرية الأمن العام -->
-                <div class="sector-item">
-                    <div class="sector-header" onclick="toggleSector(this)">
-                        <div class="sector-title-text">
-                            <i class="fa-solid fa-star-of-life"></i>
-                            <span>مديرية الأمن العام</span>
+                <div class="accordion-panel">
+                    <div class="officer-grid">
+                        <div class="officer-card">
+                            <h4>القائد المسؤول</h4>
+                            <p class="status-none">لا يوجد</p>
                         </div>
-                        <i class="fa-solid fa-chevron-down sector-chevron"></i>
-                    </div>
-                    <div class="sector-content">
-                        <div class="leader-info">
-                            <div class="leader-box">
-                                <h4>مدير الأمن العام</h4>
-                                <p>إياد جبران</p>
-                                <span class="discord-tag"><i class="fa-brands fa-discord"></i> إيـاد</span>
-                            </div>
-                            <div class="leader-box">
-                                <h4>نائب مدير الأمن العام</h4>
-                                <p>سلطان الشمري</p>
-                                <span class="discord-tag"><i class="fa-brands fa-discord"></i> سـلطان</span>
-                            </div>
+                        <div class="officer-card">
+                            <h4>النائب</h4>
+                            <p class="status-none">لا يوجد</p>
                         </div>
-                        <p class="sector-desc">الجهة التنفيذية المسؤولة عن قيادة الميدان، حفظ النظام، مكافحة الجريمة، وتنسيق جهود الدوريات والمرور والشرطة التابعة للأمن العام.</p>
                     </div>
+                    <p class="panel-description">جهاز أمني استخباراتي، يُعنى بحماية الأمن الداخلي ومواجهة التهديدات الموجهة للاستقرار الوطني.</p>
                 </div>
+            </div>
 
-            </div> <!-- نهاية القائمة -->
+            <!-- 3. الإدارة العامة للمرور -->
+            <div class="accordion-card">
+                <div class="accordion-trigger" onclick="toggleAccordion(this)">
+                    <div class="trigger-title">
+                        <i class="fa-solid fa-car-burst"></i>
+                        <span>الإدارة العامة للمرور</span>
+                    </div>
+                    <i class="fa-solid fa-plus trigger-icon"></i>
+                </div>
+                <div class="accordion-panel">
+                    <div class="officer-grid">
+                        <div class="officer-card">
+                            <h4>القائد المسؤول</h4>
+                            <p class="status-none">لا يوجد</p>
+                        </div>
+                        <div class="officer-card">
+                            <h4>النائب</h4>
+                            <p class="status-none">لا يوجد</p>
+                        </div>
+                    </div>
+                    <p class="panel-description">مسؤولة عن تنظيم حركة السير، السلامة المرورية، وإصدار التراخيص والمخالفات داخل المدن.</p>
+                </div>
+            </div>
 
-        </div> <!-- نهاية المحتوى الرئيسي -->
-    </div> <!-- نهاية حاوية الهاتف -->
+            <!-- 4. أمن الطرق -->
+            <div class="accordion-card">
+                <div class="accordion-trigger" onclick="toggleAccordion(this)">
+                    <div class="trigger-title">
+                        <i class="fa-solid fa-road"></i>
+                        <span>أمن الطرق</span>
+                    </div>
+                    <i class="fa-solid fa-plus trigger-icon"></i>
+                </div>
+                <div class="accordion-panel">
+                    <div class="officer-grid">
+                        <div class="officer-card">
+                            <h4>القائد المسؤول</h4>
+                            <p class="status-none">لا يوجد</p>
+                        </div>
+                        <div class="officer-card">
+                            <h4>النائب</h4>
+                            <p class="status-none">لا يوجد</p>
+                        </div>
+                    </div>
+                    <p class="panel-description">تختص بحفظ الأمن والنظام وتقديم الخدمات الإنسانية على الطرق الخارجية والسريعة بين المدن.</p>
+                </div>
+            </div>
+
+            <!-- 5. دوريات الأمن -->
+            <div class="accordion-card">
+                <div class="accordion-trigger" onclick="toggleAccordion(this)">
+                    <div class="trigger-title">
+                        <i class="fa-solid fa-shuttle-space"></i>
+                        <span>دوريات الأمن</span>
+                    </div>
+                    <i class="fa-solid fa-plus trigger-icon"></i>
+                </div>
+                <div class="accordion-panel">
+                    <div class="officer-grid">
+                        <div class="officer-card">
+                            <h4>القائد المسؤول</h4>
+                            <p>إياد جبران</p>
+                        </div>
+                        <div class="officer-card">
+                            <h4>النائب</h4>
+                            <p>سلطان الشمري</p>
+                        </div>
+                    </div>
+                    <p class="panel-description">الذراع الميداني الاستجابي المباشر لبلاغات وحالات الطوارئ الأمنية وحفظ الأمن بالأحياء.</p>
+                </div>
+            </div>
+
+            <!-- 6. الشرطة العسكرية -->
+            <div class="accordion-card">
+                <div class="accordion-trigger" onclick="toggleAccordion(this)">
+                    <div class="trigger-title">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <span>الشرطة العسكرية</span>
+                    </div>
+                    <i class="fa-solid fa-plus trigger-icon"></i>
+                </div>
+                <div class="accordion-panel">
+                    <div class="officer-grid">
+                        <div class="officer-card">
+                            <h4>القائد المسؤول</h4>
+                            <p class="status-none">لا يوجد</p>
+                        </div>
+                        <div class="officer-card">
+                            <h4>النائب</h4>
+                            <p class="status-none">لا يوجد</p>
+                        </div>
+                    </div>
+                    <p class="panel-description">تُعنى بضبط وتطبيق النظام العسكري، وحماية وتأمين المقرات والمنشآت التابعة لوزارة الداخلية.</p>
+                </div>
+            </div>
+
+        </div> <!-- نهاية القطاعات الميدانية -->
+
+
+        <!-- قسم الهيكل القيادي الكامل الاستراتيجي -->
+        <div class="section-header" id="leadership">
+            <div class="sub-label">MINISTRY LEADERSHIP</div>
+            <h2>الهيكل القيادي</h2>
+        </div>
+
+        <div class="hierarchy-stack">
+            
+            <div class="block-title">القيادة العليا</div>
+            <!-- وزير الداخلية -->
+            <div class="hierarchy-node">
+                <h3>نواف العتيبي</h3>
+                <p>وزير الداخلية</p>
+            </div>
+
+            <!-- نائب وزير الداخلية -->
+            <div class="hierarchy-node">
+                <h3>يزيد عسيري</h3>
+                <p>نائب وزير الداخلية</p>
+            </div>
+
+            <div class="block-title">قيادة الأمن العام</div>
+            <!-- مدير الأمن العام -->
+            <div class="hierarchy-node">
+                <h3>إياد جبران</h3>
+                <p>مدير الأمن العام</p>
+            </div>
+
+            <!-- نائب مدير الأمن العام -->
+            <div class="hierarchy-node">
+                <h3>سلطان الشمري</h3>
+                <p>نائب مدير الأمن العام</p>
+            </div>
+
+        </div> <!-- نهاية الهيكل القيادي -->
+
+        <!-- فوتر المطور -->
+        <div class="app-footer">
+            MINISTRY OF INTERIOR • 2026
+        </div>
+
+    </div> <!-- نهاية الحاوية -->
 
     <script>
-        // دالة إخفاء شاشة التحميل بعد ثانيتين تلقائياً كالمقطع
+        // دالة التحكم في شاشة التحميل (ثانيتين وتختفي بسلاسة)
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
-                const loader = document.getElementById('loadingScreen');
-                loader.classList.add('fade-out');
-            }, 2000); // 2000 مللي ثانية تعني ثانيتين
+                const loader = document.getElementById('loaderScreen');
+                if(loader) loader.classList.add('fade-out');
+            }, 2000);
         });
 
-        // دالة فتح وإغلاق القوائم المنسدلة بسلاسة
-        function toggleSector(header) {
-            const currentItem = header.parentElement;
+        // دالة الأكورديون (فتح وإغلاق القطاعات التفاعلية)
+        function toggleAccordion(trigger) {
+            const currentCard = trigger.parentElement;
             
-            // لإغلاق أي قائمة أخرى مفتوحة تلقائياً
-            document.querySelectorAll('.sector-item').forEach(item => {
-                if (item !== currentItem) {
-                    item.classList.remove('active');
+            // إغلاق أي قطاع آخر ليبقى واحد فقط مفتوح بشكل منسق وبصري ممتاز
+            document.querySelectorAll('.accordion-card').forEach(card => {
+                if (card !== currentCard) {
+                    card.classList.remove('is-active');
                 }
             });
 
-            // تبديل حالة القائمة الحالية
-            currentItem.classList.toggle('active');
+            // تبديل القطاع المختار حالياً
+            currentCard.classList.toggle('is-active');
         }
     </script>
 </body>
